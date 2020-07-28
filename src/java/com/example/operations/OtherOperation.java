@@ -1058,5 +1058,230 @@ public class OtherOperation {
             closeDBConnection();
         }
   }
+  
+    public String GetYear(){
+       DBConnect con = new DBConnect();
+       JSONArray jsonArray=new JSONArray();
+          JSONObject outObject= new JSONObject();
+       String strSp="call sp_get_academicyear_range(?);";
+       try{
+           CallableStatement callable=null;
+              ResultSet rs=null;
+         
+          callable= con.getConnection().prepareCall(strSp);
+            String strSchoolId= otherData.getString("SchoolId");
+       
+            callable.setString(1,strSchoolId);
+         
+           rs=callable.executeQuery();
+             if(rs.first()){
+                 
+                  JSONObject object = new JSONObject();
+                    
+                     object.put("SchoolId","0");
+                     object.put("AcademicYearId","0");
+                     object.put("AcademicYearRange","Select Year");
+                     
+               jsonArray.put(object);
+  
+                 do{
+                    JSONObject obj = new JSONObject();
+                  
+                    String strAcademicYearRange=rs.getString("AcademicYearRange");
+                    String strAcademicYearId=rs.getString("AcademicYearId");
+                     
+                     //obj.put("SchoolId",strSchoolId);
+                      obj.put("AcademicYearRange",strAcademicYearRange);
+                     obj.put("AcademicYearId",strAcademicYearId);
+                  jsonArray.put(obj);
+                 }while (rs.next());
+              
+                 outObject.put("Status","Success");
+                   outObject.put("Message","Data found");
+                 outObject.put("Result", jsonArray);
+                  
+             }else {
+                     outObject.put("Status","Failure");
+                     outObject.put("Message","Data not found");
+                    outObject.put("Result", jsonArray);
+             }
+               return outObject.toString();
+       }catch(Exception e){
+              String exc=e.toString();
+            String errMsg="{\"status\":\"Execption\",\"Message\":" +exc+"}";
+            return errMsg;
+       }
+   
+   }
+   public String GetFeesType(){
+       DBConnect con = new DBConnect();
+       JSONArray jsonArray=new JSONArray();
+          JSONObject outObject= new JSONObject();
+       String strSp="call sp_view_fees_type(?);";
+       try{
+           CallableStatement callable=null;
+              ResultSet rs=null;
+         
+          callable= con.getConnection().prepareCall(strSp);
+            String strSchoolId= otherData.getString("SchoolId");
+       
+            callable.setString(1,strSchoolId);
+         
+           rs=callable.executeQuery();
+             if(rs.first()){
+                 
+                  JSONObject object = new JSONObject();
+                    
+                     object.put("SchoolId","0");
+                     object.put("fees_type_Id","0");
+                     object.put("Fees_Type","Select FeesType");
+                     
+               jsonArray.put(object);
+  
+                 do{
+                    JSONObject obj = new JSONObject();
+                  
+                    String strfees_type_Id=rs.getString("fees_type_Id");
+                    String strFees_Type=rs.getString("Fees_Type");
+                     
+                     //obj.put("SchoolId",strSchoolId);
+                      obj.put("fees_type_Id",strfees_type_Id);
+                     obj.put("Fees_Type",strFees_Type);
+                  jsonArray.put(obj);
+                 }while (rs.next());
+              
+                 outObject.put("Status","Success");
+                   outObject.put("Message","Data found");
+                 outObject.put("Result", jsonArray);
+                  
+             }else {
+                     outObject.put("Status","Failure");
+                     outObject.put("Message","Data not found");
+                    outObject.put("Result", jsonArray);
+             }
+               return outObject.toString();
+       }catch(Exception e){
+              String exc=e.toString();
+            String errMsg="{\"status\":\"Execption\",\"Message\":" +exc+"}";
+            return errMsg;
+       }
+   
+   }
+   public String GetAdmissionFeesStudWise(){
+       DBConnect con = new DBConnect();
+       JSONArray jsonArray=new JSONArray();
+          JSONObject outObject= new JSONObject();
+      // String strSp="call sp_get_admission_feesreceipt_details_by_studentId_rvk(?);";
+         try{
+            String strSchoolId= otherData.getString("SchoolId"); 
+            String strSp ="";
+            if(strSchoolId.equalsIgnoreCase("4")){
+               strSp ="call sp_get_admission_feesreceipt_details_by_studentId_rvk(?);";
+            }else if(strSchoolId.equalsIgnoreCase("5")){
+                 strSp ="call sp_get_admission_feesreceipt_details_by_studentId_rvk(?);";
+            }
+       
+           CallableStatement callable=null;
+              ResultSet rs=null;
+         
+         callable= con.getConnection().prepareCall(strSp);
+           String strStudentId= otherData.getString("StudentId");
+           
+           callable.setString(1,strStudentId);
+          
+          rs=callable.executeQuery();
+             if(rs.first()){
+                 
+                 do{
+                    JSONObject obj = new JSONObject();
+                    String strReceiptNumber=rs.getString("ReceiptNumber");
+                   String strDate=rs.getString("Date");
+                    String strClassSection=rs.getString("ClassSection");
+                    String strRollNo=rs.getString("RollNo");
+                    String strStudentName=rs.getString("StudentName");
+                    String strTotal= rs.getString("Total");
+                    String strTotal_amount=rs.getString("Total_amount");
+                    String strBalance=rs.getString("Balance");
+                    
+                       obj.put("ReceiptNumber",strReceiptNumber);
+                      obj.put("Date", strDate);
+                      obj.put("ClassSection",strClassSection);
+                      obj.put("RollNo",strRollNo);
+                      obj.put("StudentName", strStudentName);
+                      obj.put("Total",strTotal);
+                      obj.put("Total_amount", strTotal_amount);
+                      obj.put("Balance", strBalance);
+                   
+                      jsonArray.put(obj);
+                      
+                 }while (rs.next());
+              
+                  outObject.put("Status","Success");
+                  outObject.put("Message","Data found");
+                  outObject.put("Result", jsonArray);
+                  
+             }else {
+                     outObject.put("Status","Failure");
+                     outObject.put("Message","Data not found");
+                    outObject.put("Result", jsonArray);
+             }
+               return outObject.toString();
+       }catch(Exception e){
+              String exc=e.toString();
+            String errMsg="{\"status\":\"Execption\",\"Message\":" +exc+"}";
+            return errMsg;
+       }
+   
+   }
+     public String GetAdmissionFeesClassIdWise(){
+       DBConnect con = new DBConnect();
+       JSONArray jsonArray=new JSONArray();
+          JSONObject outObject= new JSONObject();
+       String strSp="call sp_get_admission_feesreceipt_details_by_classId_rvk(?);";
+       try{
+           CallableStatement callable=null;
+              ResultSet rs=null;
+         
+         callable= con.getConnection().prepareCall(strSp);
+           String strClassId= otherData.getString("ClassId");
+           
+           callable.setString(1,strClassId);
+          
+          rs=callable.executeQuery();
+             if(rs.first()){
+                 
+                 do{
+                    JSONObject obj = new JSONObject();
+                  String strRollNum = rs.getString("RollNo");
+                  String strStudName= rs.getString("Studentname");
+                    String strTotal_amount=rs.getString("Total_amount");
+                    String strBalance=rs.getString("Balance");
+                    
+                    obj.put("RollNo",strRollNum);
+                    obj.put("Studentname", strStudName);
+                      obj.put("Total_amount", strTotal_amount);
+                      obj.put("Balance", strBalance);
+                   
+                      jsonArray.put(obj);
+                      
+                 }while (rs.next());
+              
+                  outObject.put("Status","Success");
+                  outObject.put("Message","Data found");
+                  outObject.put("Result", jsonArray);
+                  
+             }else {
+                     outObject.put("Status","Failure");
+                     outObject.put("Message","Data not found");
+                    outObject.put("Result", jsonArray);
+             }
+               return outObject.toString();
+       }catch(Exception e){
+              String exc=e.toString();
+            String errMsg="{\"status\":\"Execption\",\"Message\":" +exc+"}";
+            return errMsg;
+       }
+   
+   }
    
 }

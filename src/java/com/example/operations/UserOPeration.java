@@ -185,9 +185,9 @@ public class UserOPeration {
               JSONObject object = new JSONObject();
               if(rs.next()) 
               {
-                
-              //  String strUserId= rs.getString("userID");
+                  //String strUserId= rs.getString("userID");
                 String strEmail=rs.getString("email");
+             
                 String strName=rs.getString("name");
                 String strMobile=rs.getString("mobile_number");
                 String strStudents=rs.getString("students");

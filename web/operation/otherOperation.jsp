@@ -128,7 +128,17 @@
       else if(opName.equals("getStaffclasswiseSubjectSyllabus"))
     {
         out.println(operation.getStaffclasswiseSubjectSyllabus());
-    }
+    }else if(opName.equals("GetYear"))
+    {
+        out.println(operation.GetYear());
+    }else if(opName.equalsIgnoreCase("GetFeesType")){
+            out.println(operation.GetFeesType());
+             
+        }else if(opName.equalsIgnoreCase("GetAdmissionFeesStudWise")){
+                        out.println(operation.GetAdmissionFeesStudWise());
+        }else if(opName.equalsIgnoreCase("GetAdmissionFeesClassIdWise")){
+            out.println(operation.GetAdmissionFeesClassIdWise());
+        }
     } catch (Exception e) {
             out.println(e.toString());
         }

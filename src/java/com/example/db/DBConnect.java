@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.example.db;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,21 +14,30 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Anirudh
+ * @author LENOVO
  */
-
 public class DBConnect {
-
-//public static final String DB_NAME = "studentmanagement";
+//       public static final String DB_NAME = "studentmanagement";
   
  
-public static final String DB_NAME = "studentmanagement_production";
-//public static final String HOST_NAME = "jdbc:mysql://103.120.179.71:4443/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";
-public static final String DB_USER_NAME = "Pmmsskmd";
+/*public static final String DB_NAME = "studentmanagement_production_july";
+public static final String DB_USER_NAME = "root";
+public static final String DB_PASSWORD = "root123";
+public static final String HOST_NAME = "jdbc:mysql://localhost:3306/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8"; */
+
 //public static final String DB_NAME = "studentmanagement_production";
-    public static final String DB_PASSWORD = "P!m@m#s$s%k^m7d*";
- public static final String HOST_NAME = "jdbc:mysql://127.0.0.1:4443/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";  
-////    
+//  public static final String DB_USER_NAME = "Pmmsskmd";
+  //public static final String DB_PASSWORD = "P!m@m#s$s%k^m7d*";
+//public static final String HOST_NAME = "jdbc:mysql://103.120.179.71:4443/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";
+
+
+ 
+  
+//public static final String DB_NAME = "studentmanagement_production";
+  
+
+  //  public static final String HOST_NAME = "jdbc:mysql:// 192.168.1.4:3306/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";  
+//public static final String HOST_NAME = "jdbc:mysql://127.0.0.1:3306/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";     
 
  
 
@@ -53,14 +61,14 @@ public static final String DB_USER_NAME = "Pmmsskmd";
         }catch(ClassNotFoundException ee){
             
             System.out.println("Where is your MySQL JDBC Driver?");
-	    ee.printStackTrace();
+   ee.printStackTrace();
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, "Exception "+ee);
             return;
         }catch(SQLException  ee){
                 System.out.println("Connection Failed! Check output console");
-		ee.printStackTrace();
+ee.printStackTrace();
                  Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, "Exception "+ee);
-		return;
+return;
         }
         
         //return connection;
@@ -160,4 +168,6 @@ public static final String DB_USER_NAME = "Pmmsskmd";
     public Connection getConnection(){
             return this.connection;
     }
+
+    
 }
