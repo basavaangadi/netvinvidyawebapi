@@ -19,16 +19,16 @@ import java.util.logging.Logger;
 public class DBConnect {
 //       public static final String DB_NAME = "studentmanagement";
   
- 
+
 /*public static final String DB_NAME = "studentmanagement_production_july";
 public static final String DB_USER_NAME = "root";
 public static final String DB_PASSWORD = "root123";
 public static final String HOST_NAME = "jdbc:mysql://localhost:3306/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8"; */
 
-//public static final String DB_NAME = "studentmanagement_production";
-//  public static final String DB_USER_NAME = "Pmmsskmd";
-  //public static final String DB_PASSWORD = "P!m@m#s$s%k^m7d*";
-//public static final String HOST_NAME = "jdbc:mysql://103.120.179.71:4443/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";
+public static final String DB_NAME = "studentmanagement_production";
+  public static final String DB_USER_NAME = "Pmmsskmd";
+  public static final String DB_PASSWORD = "P!m@m#s$s%k^m7d*";
+public static final String HOST_NAME = "jdbc:mysql://103.120.179.71:4443/"+DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";
 
 
  
